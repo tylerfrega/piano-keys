@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-
 const Piano = () => {
     const keys = [
         { name: 'c', value: 'c1', type: 'natural' },
@@ -55,7 +54,7 @@ const Piano = () => {
         },
         G: {
             name: 'G major',
-            notes: ['g', 'a', 'b', 'c', 'd', 'f#', 'g'],
+            notes: ['g', 'a', 'b', 'c', 'd', 'e', 'f#', 'g'],
             keysToHighlght: []
         },
         A: {
@@ -84,14 +83,18 @@ const Piano = () => {
     const setHighlights = () => {
         let hitFirstRoot = false;
         let hitSecondRoot = false
+        let keysToHighlght = [];
         keys.forEach(key => {
             // hit second root note
             if (hitFirstRoot && key.name === selectedScale.notes[0]) hitSecondRoot = true;
             // hit first root note
             if (key.name === selectedScale.notes[0]) hitFirstRoot = true;
             // only highlight first octave of a scale
-            if (hitFirstRoot && !hitSecondRoot && selectedScale.notes.includes(key.name)) selectedScale.keysToHighlght.push(key.value);
+            if (hitFirstRoot && !hitSecondRoot && selectedScale.notes.includes(key.name)) {
+                keysToHighlght.push(key.value);
+            }
         });
+        selectedScale.keysToHighlght = keysToHighlght;
     }
 
     const renderKeys = () => {
