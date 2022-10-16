@@ -102,8 +102,11 @@ const Piano = () => {
         return keys.map(key => {
             return key.type === 'natural' ?
                 <div key={key.value} className={`natural-key ${setHighlightStyle(key)}`}>
-                    {key.name}
+                    <div  key={key.value} className={'natural-key-inner'}>
+                        {key.name}
+                    </div>
                 </div>
+
                 :
                 <div key={key.value} className='piano-accidental-key-wrapper'>
                     <div className={`accidental-key ${setHighlightStyle(key)}`}>
